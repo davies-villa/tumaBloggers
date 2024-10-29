@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); 
+  const location = useLocation(); // Get the current location
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -14,6 +14,7 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  // Check if the current path is the home page
   const isHomePage = location.pathname === '/';
 
   return (
@@ -21,10 +22,12 @@ function Navbar() {
       className="bg-white shadow-xl fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] rounded-md p-2 z-10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 ">
           {/* Logo or Back Button Section */}
-          <div className="flex items-center">
-            {!isHomePage ? (
+          <div className="flex-shrink-0">
+            {isHomePage ? (
+              <img src={logo} alt="Logo" className="h-14 w-auto" />
+            ) : (
               <Link to="/" className="text-gray-800 hover:text-green-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +35,7 @@ function Navbar() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="h-6 w-6 mr-2"
+                  className="h-6 w-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -41,18 +44,11 @@ function Navbar() {
                   />
                 </svg>
               </Link>
-            ) : (
-              <img src={logo} alt="Logo" className="h-14 w-auto" />
             )}
           </div>
 
-          {/* Centered Logo on Non-Home Pages */}
-          <div className={`flex-grow ${isHomePage ? 'hidden' : 'flex justify-center'}`}>
-            <img src={logo} alt="Logo" className="h-14 w-auto" />
-          </div>
-
           {/* Centered Navigation Links */}
-          <div className={`flex-grow hidden lg:flex justify-center space-x-8 ${isHomePage ? '' : 'invisible'}`}>
+          <div className="flex-grow hidden lg:flex justify-center space-x-8">
             <Link
               to="/"
               className="text-gray-800 hover:text-green-600 px-3 py-2 text-base font-medium"
@@ -80,7 +76,7 @@ function Navbar() {
           </div>
 
           {/* Hamburger Menu Icon */}
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center">
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
