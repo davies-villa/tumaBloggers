@@ -6,9 +6,11 @@ import Categories from "../components/Catergories";
 
 const LandingPage = () => {
   return (
-    <div className="py-6">
-      <Navbar />
-      <div className="mt-28"> 
+    <div>
+      <div className="py-2">
+        <Navbar />
+      </div>
+      <div className="mt-28">
         <Header />
       </div>
       <div>
