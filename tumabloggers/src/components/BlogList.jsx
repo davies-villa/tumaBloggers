@@ -5,7 +5,6 @@ const BlogList = ({ category }) => {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
 
-  // Mapping category names to their IDs
   const categoryIds = {
     Relationships: 197,
     Travel: 198,

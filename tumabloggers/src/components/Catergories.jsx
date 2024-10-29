@@ -1,53 +1,25 @@
-import React, { useEffect, useState } from "react";
-import TravelImg from "../assets/travel.png";
-import RelationshipImg from "../assets/relationships.png";
-import WellnessImg from "../assets/wellness.png";
-import ReligionImg from "../assets/religion.png";
-import BlogList from "./BlogList"; 
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Use useNavigate for navigation
+
+// Import category images
+import TravelImg from "../assets/2.png";
+import TechImg from "../assets/5.png";
+import FoodImg from "../assets/4.png";
+import LifestyleImg from "../assets/3.png";
+import ReligionImg from "../assets/4.png";
+import RelationshipImg from "../assets/1.png";
 
 const Categories = () => {
-  const [categoryCounts, setCategoryCounts] = useState({
-    Relationships: 0,
-    Travel: 0,
-    "Health & Wellness": 0,
-    "Religion and Belief": 0,
-  });
-
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categoryCounts, setCategoryCounts] = useState({});
+  const navigate = useNavigate(); // Initialize navigate for navigation
 
   const cards = [
-    {
-      category: "Relationships",
-      heading: "Connect with Loved Ones",
-      image: RelationshipImg,
-      bgColor: "#f5a8b9",
-      categoryTextColor: "text-[#e30436]",
-      headingTextColor: "text-gray-700",
-    },
-    {
-      category: "Travel",
-      heading: "Explore the Wild",
-      image: TravelImg,
-      bgColor: "#ffd8a5",
-      categoryTextColor: "text-[#f5ae52]",
-      headingTextColor: "text-[#333333]",
-    },
-    {
-      category: "Health & Wellness",
-      heading: "Embrace Wellness",
-      image: WellnessImg,
-      bgColor: "#bbf7d0",
-      categoryTextColor: "text-[#25995c]",
-      headingTextColor: "text-[#333333]",
-    },
-    {
-      category: "Religion and Belief",
-      heading: "Indulge in Beliefs",
-      image: ReligionImg,
-      bgColor: "#96bce7",
-      categoryTextColor: "text-[#6798cf]",
-      headingTextColor: "text-[#333333]",
-    },
+    { category: "Food", image: FoodImg, bgColor: "#fff" },
+    { category: "Lifestyle", image: LifestyleImg, bgColor: "#fff" },
+    { category: "Relationships", image: RelationshipImg, bgColor: "#fff" },
+    { category: "Religion", image: ReligionImg, bgColor: "#fff" },
+    { category: "Tech", image: TechImg, bgColor: "#fff" },
+    { category: "Travel", image: TravelImg, bgColor: "#fff" },
   ];
 
   useEffect(() => {
@@ -56,19 +28,11 @@ const Categories = () => {
         const response = await fetch("https://public-api.wordpress.com/wp/v2/sites/tumabloggers.wordpress.com/categories");
         const data = await response.json();
 
-        // Map the data to get the counts for each category
-        const counts = data.reduce((acc, category) => {
-          if (category.name === "Relationships") {
-            acc.Relationships = category.count || 0;
-          } else if (category.name === "Travel") {
-            acc.Travel = category.count || 0;
-          } else if (category.name === "Health & Wellness") {
-            acc["Health & Wellness"] = category.count || 0;
-          } else if (category.name === "Religion and Belief") {
-            acc["Religion and Belief"] = category.count || 0;
-          }
-          return acc;
-        }, {});
+        // Map the category names to their counts
+        const counts = {};
+        data.forEach(category => {
+          counts[category.name] = category.count; // Assuming each category object has a 'count' property
+        });
 
         setCategoryCounts(counts);
       } catch (error) {
@@ -80,52 +44,37 @@ const Categories = () => {
   }, []);
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+    navigate(`/category/${category}`); 
   };
 
   return (
-    <section className="bg-gray-100 py-4 flex justify-center items-center">
-      <div className="container mx-auto px-6">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <section className="bg-gray-100 py-8">
+      <div className="container mx-auto p-3 lg:px-8">
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="p-8 shadow-md rounded-md hover:shadow-lg transition-shadow flex items-center cursor-pointer"
+              className="p-8 shadow-lg rounded-lg hover:shadow-xl transition cursor-pointer flex flex-col items-center relative"
               style={{ backgroundColor: card.bgColor }}
-              onClick={() => handleCategoryClick(card.category)} 
+              onClick={() => handleCategoryClick(card.category)}
             >
-              {/* Left Side: Text Content */}
-              <div className="w-2/3">
-                <div className={`${card.categoryTextColor} mb-2`}>
-                  <span className="text-sm font-bold uppercase">{card.category}</span>
-                </div>
-                <h2 className={`text-2xl font-semibold ${card.headingTextColor} mb-6`}>
-                  {card.heading}
-                </h2>
-                {/* Display the number of blogs available or "No Blogs Found" */}
-                <p className="text-gray-600 mb-4">
-                  {categoryCounts[card.category] > 0
-                    ? `${categoryCounts[card.category]} Blogs Available`
-                    : "No Blogs Found"}
-                </p>
-              </div>
+              {/* Category Name */}
+              <h3 className="text-lg lg:text-md font-medium text-gray-800 mb-2">
+                {card.category}
+              </h3>
 
-              {/* Right Side: Image */}
-              <div className="w-1/3">
+              {/* Radial Gradient + Image */}
+              <div className="relative bg-custom-gradient w-24 h-24">
+                <div className="absolute bg-custom-gradient border-white inset-0 rounded-full"></div>
                 <img
                   src={card.image}
-                  alt={card.heading}
-                  className="w-full h-full object-cover rounded-md"
+                  alt={card.category}
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
             </div>
           ))}
         </div>
-
-        {/* Conditionally render BlogList if a category is selected */}
-        {selectedCategory && (
-          <BlogList category={selectedCategory} />
-        )}
       </div>
     </section>
   );

@@ -51,7 +51,7 @@ const WhyBlogs = () => {
             <img
               src={reason.icon}
               alt={`${reason.title} icon`}
-              className="w-32 h-32 mb-4" // Increased size
+              className="w-32 h-32 mb-4"
             />
             <h3 className="text-2xl font-semibold">{reason.title}</h3>
             <p className="mt-2 text-lg text-gray-600">{reason.content}</p>
