@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar"; 
-import Author1Image from "../assets/tadiii.JPG"; 
-import Author2Image from "../assets/davies.JPG"; 
+import Tadiwa from "../assets/tadi.JPG"; 
+import Davies from "../assets/davies.JPG"; 
 
 const authors = [
   {
     id: 1,
     name: "Tadiwa Choga",
     bio: "Author One is a passionate writer who loves to explore new cultures and cuisines.",
-    image: Author1Image,
+    image: Tadiwa,
   },
   {
     id: 2,
     name: "Davies Gotosa",
     bio: "Author Two shares insights on technology and lifestyle.",
-    image: Author2Image,
+    image: Davies,
   },
   
 ];
