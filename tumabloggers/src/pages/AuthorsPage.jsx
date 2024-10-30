@@ -10,14 +10,12 @@ const authors = [
     name: "Tadiwa Choga",
     bio: "Author One is a passionate writer who loves to explore new cultures and cuisines.",
     image: Author1Image,
-    blogUrl: "/author/1", 
   },
   {
     id: 2,
     name: "Davies Gotosa",
     bio: "Author Two shares insights on technology and lifestyle.",
     image: Author2Image,
-    blogUrl: "/author/2", 
   },
   
 ];
