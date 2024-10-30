@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar"; // Import the Navbar component
-import Author1Image from "../assets/tadiii.JPG"; // Replace with actual images
+import Author1Image from "../assets/tadi.JPG"; // Replace with actual images
 import Author2Image from "../assets/davies.JPG"; // Replace with actual images
 
 const authors = [
