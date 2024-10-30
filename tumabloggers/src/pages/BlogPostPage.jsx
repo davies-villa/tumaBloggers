@@ -84,7 +84,7 @@ const BlogPostPage = () => {
           {/* Blog Content - Takes left side on large screens */}
           <div className="w-full lg:w-3/4 lg:pr-8">
             <div
-              className="text-gray-800 leading-relaxed [&>p]:mb-8 [&>p]:text-xl [&>p]:p-6"
+              className="text-gray-800 leading-relaxed [&>p]:mb-8 [&>p]:text-l [&>p]:font-semi-bold [&>p]:p-6"
               dangerouslySetInnerHTML={{ __html: blog.content.rendered }}
             ></div>
 
