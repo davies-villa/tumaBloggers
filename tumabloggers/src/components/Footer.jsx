@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"; 
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear(); 
 
   return (
     <footer className="bg-green-500 text-white p-8 text-center space-y-6">
@@ -10,6 +10,7 @@ const Footer = () => {
       <h3 className="text-xl font-semibold">Follow us on our socials</h3>
       
       <div className="flex justify-center space-x-6">
+        {/* Facebook Link */}
         <a 
           href="https://facebook.com" 
           target="_blank" 
@@ -18,6 +19,7 @@ const Footer = () => {
         >
           <FaFacebook className="w-6 h-6 hover:text-green-500 transition-colors" />
         </a>
+        {/* Twitter Link */}
         <a 
           href="https://twitter.com" 
           target="_blank" 
@@ -26,6 +28,7 @@ const Footer = () => {
         >
           <FaTwitter className="w-6 h-6 hover:text-green-500 transition-colors" />
         </a>
+        {/* Instagram Link */}
         <a 
           href="https://instagram.com" 
           target="_blank" 
@@ -44,4 +47,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer; 
