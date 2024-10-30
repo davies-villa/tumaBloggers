@@ -31,9 +31,9 @@ const BlogPostPage = () => {
   // Function to load AdSense script
   const loadAdsense = () => {
     const script = document.createElement("script");
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152210468637513";
     script.async = true;
-    script.setAttribute("data-ad-client", "ca-pub-6152210468637513"); // Replace with your AdSense Publisher ID
+    script.crossOrigin = "anonymous"; // Setting the crossorigin attribute
     document.body.appendChild(script);
   };
 
@@ -88,15 +88,15 @@ const BlogPostPage = () => {
               dangerouslySetInnerHTML={{ __html: blog.content.rendered }}
             ></div>
 
-            {/* AdSense Ad Placeholder */}
+            {/* AdSense Ad Placeholder in the main content */}
             <div className="my-8 text-center">
               <ins
                 className="adsbygoogle"
-                style={{ display: "block" }}
-                data-ad-client="ca-pub-XXXXXX" // Replace with your AdSense Publisher ID
-                data-ad-slot="1234567890" // Replace with your AdSense Ad Slot ID
-                data-ad-format="auto"
-                data-full-width-responsive="true"
+                style={{ display: "block", textAlign: "center" }}
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-6152210468637513"
+                data-ad-slot="4250380045"
               ></ins>
               <script>
                 {`(adsbygoogle = window.adsbygoogle || []).push({});`}
@@ -104,16 +104,21 @@ const BlogPostPage = () => {
             </div>
           </div>
 
-          {/* Optional Sidebar (or leave it empty for future use) */}
+          {/* Sidebar with AdSense Ad */}
           <div className="hidden lg:block lg:w-1/4">
-            {/* Add sidebar content here if needed */}
             <div className="bg-gray-100 p-4 rounded shadow">
-              <p className="text-lg font-semibold">More from our blog</p>
-              <ul className="list-disc pl-6 mt-2 text-gray-600">
-                <li>Related Article 1</li>
-                <li>Related Article 2</li>
-                <li>Related Article 3</li>
-              </ul>
+              {/* AdSense Ad Placeholder in the sidebar */}
+              <ins
+                className="adsbygoogle"
+                style={{ display: "block", textAlign: "center" }}
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-6152210468637513"
+                data-ad-slot="4250380045"
+              ></ins>
+              <script>
+                {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+              </script>
             </div>
           </div>
         </div>
