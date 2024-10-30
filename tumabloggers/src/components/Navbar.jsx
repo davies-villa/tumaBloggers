@@ -103,8 +103,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
+      
       <MobileMenu isOpen={isOpen} closeMenu={closeMenu} />
     </>
   );
