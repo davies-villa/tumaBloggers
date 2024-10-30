@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar"; 
-import Author1Image from "../../assets/tadi.JPG";
-import Author2Image from "../../assets/davies.JPG";
+import Author1Image from "../assets/tadi.png";
+import Author2Image from "../assets/davies.png";
 
 const authors = [
   {

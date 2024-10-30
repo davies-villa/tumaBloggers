@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar"; 
-import Tadiwa from "../assets/tadi.JPG"; 
-import Davies from "../assets/davies.JPG"; 
+import Tadiwa from "../assets/tadi.png";
+import Davies from "../assets/davies.png";
 
 const authors = [
   {
