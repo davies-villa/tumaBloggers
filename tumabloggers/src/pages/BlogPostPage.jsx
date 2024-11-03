@@ -8,9 +8,9 @@ import {
   FaInstagram,
   FaWhatsapp,
   FaTelegram,
-  FaRegHeart, // Import heart icon for unliked state
-  FaHeart, // Import filled heart icon for liked state
-  FaShareAlt, // Import share icon
+  FaRegHeart,
+  FaHeart,
+  FaShareAlt,
 } from "react-icons/fa";
 
 const BlogPostPage = () => {
@@ -20,12 +20,11 @@ const BlogPostPage = () => {
   const [isShareModalOpen, setShareModalOpen] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState("Copy Link");
   const [likeCount, setLikeCount] = useState(0);
-  const [isLiked, setIsLiked] = useState(false); // State to track like status
+  const [isLiked, setIsLiked] = useState(false);
 
   const shareUrl = `https://tumabloggers.co.zw/blog/${postId}`;
   const blogTitle =
-    blog?.title?.rendered.replace(/&nbsp;/g, " ") ||
-    "Check out this blog post!";
+    blog?.title?.rendered.replace(/&nbsp;/g, " ") || "Check out this blog post!";
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -37,7 +36,7 @@ const BlogPostPage = () => {
 
         const data = await response.json();
         setBlog(data);
-        setLikeCount(data.likes || 0); // Set initial like count from the post data
+        setLikeCount(data.likes || 0);
       } catch (error) {
         setError("Failed to load the blog post.");
       }
@@ -62,7 +61,7 @@ const BlogPostPage = () => {
         {
           method: isLiked ? "DELETE" : "POST",
           headers: {
-            Authorization: "Bearer YOUR_ACCESS_TOKEN",
+            Authorization: "Env....",
           },
         }
       );
@@ -93,14 +92,20 @@ const BlogPostPage = () => {
     );
   }
 
+  // Format the date
+  const formattedDate = new Date(blog.date).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
   return (
     <div>
       <Navbar />
       <div className="bg-green-500 rounded-lg h-[70vh] flex flex-col items-center justify-center p-4 text-center">
         <h1 className="text-4xl text-white font-bold mb-4">{blogTitle}</h1>
-        <p className="text-sm text-white mt-2">
-          By {blog._embedded?.author?.[0]?.name || "Unknown"} on{" "}
-          {new Date(blog.date).toLocaleDateString()}
+        <p className="text-sm font-semibold text-white mt-2">
+          {blog._embedded?.author?.[0]?.name || "Davies Gotosa"} on {formattedDate}
         </p>
 
         <div className="flex justify-center space-x-6 mt-4">
@@ -233,18 +238,24 @@ const BlogPostPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth="1.5"
+                  strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 hover:text-gray-400  transition duration-200"
+                  className="h-6 w-6"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"
+                    d="M15 17h6v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2h6M15 7h6v2a2 2 0 01-2 2H4a2 2 0 01-2-2V7h6M15 17l3-3m0 0l3 3m-3-3v8m-4-8h2v8h-2z"
                   />
                 </svg>
               </button>
             </div>
+            <button
+              onClick={toggleShareModal}
+              className="mt-4 w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

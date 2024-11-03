@@ -107,10 +107,14 @@ const CategoryPage = () => {
                   </div>
                   <div className="flex justify-between items-center mt-4">
                     <p className="text-sm text-gray-600">
-                      By {blog._embedded?.author?.[0]?.name || "Unknown"}
+                       {blog._embedded?.author?.[0]?.name || "Davies Gotosa"}
                     </p>
                     <p className="text-sm text-gray-500">
-                      {new Date(blog.date).toLocaleDateString()}
+                      {new Date(blog.date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </p>
                   </div>
                 </div>
