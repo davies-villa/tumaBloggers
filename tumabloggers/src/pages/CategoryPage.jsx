@@ -8,6 +8,7 @@ import ReligionImg from "../assets/4.png";
 import RelationshipImg from "../assets/1.png";
 import FrogNotFound from "../assets/frognot.png";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const categoryImages = {
   Food: FoodImg,
@@ -16,6 +17,11 @@ const categoryImages = {
   Religion: ReligionImg,
   Tech: TechImg,
   Travel: TravelImg,
+};
+
+// Helper function to sanitize HTML content and remove &nbsp;
+const sanitizeHTMLContent = (html) => {
+  return html.replace(/&nbsp;/g, " ");
 };
 
 const CategoryPage = () => {
@@ -45,7 +51,15 @@ const CategoryPage = () => {
         if (!postsResponse.ok) throw new Error("Network response was not ok");
 
         const postsData = await postsResponse.json();
-        setBlogs(postsData);
+
+        // Sanitize title and excerpt fields to remove &nbsp;
+        const sanitizedPostsData = postsData.map((post) => ({
+          ...post,
+          title: { rendered: sanitizeHTMLContent(post.title.rendered) },
+          excerpt: { rendered: sanitizeHTMLContent(post.excerpt.rendered) },
+        }));
+
+        setBlogs(sanitizedPostsData);
       } catch (error) {
         console.error("Error fetching blogs:", error);
         setError("Failed to load blogs. Please try again later.");
@@ -79,15 +93,18 @@ const CategoryPage = () => {
               <Link key={blog.id} to={`/blog/${blog.id}`}>
                 <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full hover:shadow-lg transition relative">
                   <div>
-                    <h2 className="text-xl font-semibold">{blog.title.rendered}</h2>
-                    <div className="border-l-4 border-green-500 rounded-sm pl-2 mt-2">
+                    <h2 className="text-xl font-semibold line-clamp-2 h-auto overflow-hidden">
+                      {blog.title.rendered}
+                    </h2>
+                    <div className="border-l-4 border-green-500 rounded-sm pl-2 mt-2 h-20">
                       <p
                         className="text-gray-700 line-clamp-3"
-                        dangerouslySetInnerHTML={{ __html: blog.excerpt.rendered }}
+                        dangerouslySetInnerHTML={{
+                          __html: blog.excerpt.rendered,
+                        }}
                       ></p>
                     </div>
                   </div>
-                  
                   <div className="flex justify-between items-center mt-4">
                     <p className="text-sm text-gray-600">
                       By {blog._embedded?.author?.[0]?.name || "Unknown"}
@@ -102,7 +119,9 @@ const CategoryPage = () => {
           </div>
         ) : (
           <div className="text-center mt-10">
-            <p className="text-gray-600 text-xl">No blogs available in this category.</p>
+            <p className="text-gray-600 text-xl">
+              No blogs available in this category.
+            </p>
             <div className="flex justify-center mt-1">
               <img
                 src={FrogNotFound}
@@ -113,6 +132,8 @@ const CategoryPage = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 };

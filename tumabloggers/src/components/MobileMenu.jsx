@@ -1,5 +1,5 @@
 // src/components/MobileMenu.jsx
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function MobileMenu({ isOpen, closeMenu }) {
   return (
@@ -7,14 +7,14 @@ function MobileMenu({ isOpen, closeMenu }) {
       {/* Overlay with Smooth Fade */}
       <div
         className={`fixed inset-0 bg-black z-10 transition-opacity duration-300 ease-in-out 
-        ${isOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
-        onClick={closeMenu} 
+        ${isOpen ? "opacity-50" : "opacity-0 pointer-events-none"}`}
+        onClick={closeMenu}
       />
 
       {/* Sliding Menu */}
       <div
         className={`fixed inset-y-0 right-0 w-64 shadow-xl transform transition-transform duration-300 ease-in-out z-20 
-        ${isOpen ? 'translate-x-0 bg-white' : 'translate-x-full'}`}
+        ${isOpen ? "translate-x-0 bg-white" : "translate-x-full"}`}
       >
         <div className="flex items-center justify-between p-6">
           {/* Close Menu Button (x) */}
@@ -40,16 +40,32 @@ function MobileMenu({ isOpen, closeMenu }) {
         </div>
 
         <nav className="flex flex-col space-y-4 px-6">
-          <Link to="/" onClick={closeMenu} className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md"
+          >
             Home
           </Link>
-          <Link to="/blogs" onClick={closeMenu} className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md">
+          <Link
+            to="/blogs"
+            onClick={closeMenu}
+            className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md"
+          >
             Blogs
           </Link>
-          <Link to="/authors" onClick={closeMenu} className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md">
+          <Link
+            to="/authors"
+            onClick={closeMenu}
+            className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md"
+          >
             Authors
           </Link>
-          <Link to="/about" onClick={closeMenu} className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md">
+          <Link
+            to="/about"
+            onClick={closeMenu}
+            className="hover:text-green-600 p-2 hover:bg-gray-200 rounded-md"
+          >
             About Us
           </Link>
         </nav>

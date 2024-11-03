@@ -1,12 +1,12 @@
-// src/components/Navbar.jsx
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import MobileMenu from "./MobileMenu";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -23,27 +23,26 @@ function Navbar() {
               {isHomePage ? (
                 <img src={logo} alt="Logo" className="h-14 w-auto" />
               ) : (
-                <Link to="/" className="text-gray-800">
-                  <button
-                    className="hover:bg-gray-200 p-2 rounded-full transition duration-300 ease-in-out "
-                    aria-label="Back"
+                <button
+                  onClick={() => navigate(-1)}
+                  className="hover:bg-gray-200 p-2 rounded-full transition duration-300 ease-in-out"
+                  aria-label="Back"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="h-6 w-6"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 19.5 8.25 12l7.5-7.5"
-                      />
-                    </svg>
-                  </button>
-                </Link>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 19.5 8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </button>
               )}
             </div>
 
@@ -79,7 +78,7 @@ function Navbar() {
             <div className="flex items-center">
               <button
                 onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-full text-gray-800  hover:bg-gray-200 "
+                className="inline-flex items-center justify-center p-2 rounded-full text-gray-800 hover:bg-gray-200"
                 aria-controls="mobile-menu"
                 aria-expanded={isOpen}
               >
@@ -103,7 +102,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      
+
       <MobileMenu isOpen={isOpen} closeMenu={closeMenu} />
     </>
   );

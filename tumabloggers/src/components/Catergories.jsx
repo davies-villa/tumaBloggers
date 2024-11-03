@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Navigation hook
 
 // Import category images
@@ -28,27 +28,29 @@ const Categories = () => {
   useEffect(() => {
     const fetchCategoryCounts = async () => {
       try {
-        const response = await fetch("https://public-api.wordpress.com/wp/v2/sites/tumabloggers.wordpress.com/categories");
+        const response = await fetch(
+          "https://public-api.wordpress.com/wp/v2/sites/tumabloggers.wordpress.com/categories"
+        );
         const data = await response.json();
 
         // Map category names to counts
         const counts = {};
-        data.forEach(category => {
+        data.forEach((category) => {
           counts[category.name] = category.count;
         });
 
-        setCategoryCounts(counts); 
+        setCategoryCounts(counts);
       } catch (error) {
-        console.error("Error fetching category counts:", error); 
+        console.error("Error fetching category counts:", error);
       }
     };
 
-    fetchCategoryCounts(); 
+    fetchCategoryCounts();
   }, []);
 
   // Handle category click
   const handleCategoryClick = (category) => {
-    navigate(`/category/${category}`); 
+    navigate(`/category/${category}`);
   };
 
   return (
@@ -57,10 +59,10 @@ const Categories = () => {
         <div className="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {cards.map((card, index) => (
             <div
-              key={index} 
+              key={index}
               className="p-8 shadow-lg rounded-lg hover:shadow-xl transition cursor-pointer flex flex-col items-center relative"
-              style={{ backgroundColor: card.bgColor }} 
-              onClick={() => handleCategoryClick(card.category)} 
+              style={{ backgroundColor: card.bgColor }}
+              onClick={() => handleCategoryClick(card.category)}
             >
               {/* Category Name */}
               <h3 className="text-lg lg:text-md font-medium text-gray-800 mb-2">
@@ -84,4 +86,4 @@ const Categories = () => {
   );
 };
 
-export default Categories; 
+export default Categories;
