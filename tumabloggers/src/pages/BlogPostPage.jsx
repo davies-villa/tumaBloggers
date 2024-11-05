@@ -105,7 +105,7 @@ const BlogPostPage = () => {
       <div className="bg-green-500 rounded-lg h-[70vh] flex flex-col items-center justify-center p-4 text-center">
         <h1 className="text-4xl text-white font-bold mb-4">{blogTitle}</h1>
         <p className="text-sm font-semibold text-white mt-2">
-          {blog._embedded?.author?.[0]?.name || "Davies Gotosa"} on {formattedDate}
+          {blog._embedded?.author?.[0]?.name || "Tadiwa Choga"} on {formattedDate}
         </p>
 
         <div className="flex justify-center space-x-6 mt-4">
