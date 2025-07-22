@@ -64,7 +64,7 @@ const AllBlogsPage = () => {
     <div>
       <Navbar />
       <div
-        className="h-[80vh] w-[95%] lg:w-full bg-cover bg-center flex items-center justify-center flex-col text-center"
+        className="h-[80vh] bg-cover bg-center flex items-center justify-center flex-col text-center"
         style={{ backgroundImage: `url(${BackgroundImage})` }}
       >
         <div className="bg-black bg-opacity-50 w-full h-full items-center justify-center flex flex-col">
